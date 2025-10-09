@@ -1,3 +1,4 @@
+// src/pages/Catalog.jsx
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Book, Clock, UserPlus, Sliders } from "lucide-react";
@@ -15,7 +16,7 @@ import plumbingImg from "../assets/plumbing.jpg";
 import tailoringImg from "../assets/tailoring.jpg";
 import weldingImg from "../assets/welding.jpg";
 
-// Complete NCVET-style courses array
+// Courses data
 export const courses = [
   {
     id: 1,
@@ -23,9 +24,15 @@ export const courses = [
     desc: "Learn modern farming and sustainable practices.",
     img: agricultureImg,
     level: "Beginner",
+    category: "Agriculture",
     duration: "3 Months",
     hours: "120",
-    modules: ["Intro to Agriculture", "Soil Management", "Crop Planning", "Sustainable Practices"],
+    modules: [
+      "Introduction to Agriculture",
+      "Soil Management",
+      "Crop Planning",
+      "Sustainable Practices",
+    ],
   },
   {
     id: 2,
@@ -33,9 +40,15 @@ export const courses = [
     desc: "Vehicle maintenance, diagnostics, and repair techniques.",
     img: automobileImg,
     level: "Intermediate",
+    category: "Automotive",
     duration: "4 Months",
     hours: "150",
-    modules: ["Automotive Systems", "Electrical Diagnostics", "AC Systems", "Practical Workshops"],
+    modules: [
+      "Automotive Systems Overview",
+      "Electrical Systems & Diagnostics",
+      "Air Conditioning Systems",
+      "Practical Workshops & Assessment",
+    ],
   },
   {
     id: 3,
@@ -43,9 +56,15 @@ export const courses = [
     desc: "Master furniture making and woodcraft skills.",
     img: carpentryImg,
     level: "Beginner",
+    category: "Trades & Crafts",
     duration: "3 Months",
     hours: "100",
-    modules: ["Tools & Materials", "Basic Joinery", "Furniture Making", "Project Workshop"],
+    modules: [
+      "Tools and Materials",
+      "Basic Joinery",
+      "Furniture Making",
+      "Project Workshop",
+    ],
   },
   {
     id: 4,
@@ -53,9 +72,15 @@ export const courses = [
     desc: "Basic to advanced computer and networking courses.",
     img: computerImg,
     level: "Intermediate",
+    category: "IT & Digital Skills",
     duration: "4 Months",
     hours: "130",
-    modules: ["Computer Basics", "Networking Fundamentals", "Software Tools", "Projects"],
+    modules: [
+      "Computer Basics",
+      "Networking Fundamentals",
+      "Software & Tools",
+      "Hands-on Projects",
+    ],
   },
   {
     id: 5,
@@ -63,9 +88,15 @@ export const courses = [
     desc: "Learn electrical wiring, circuits, and safety.",
     img: electricalImg,
     level: "Advanced",
+    category: "Trades & Crafts",
     duration: "6 Months",
-    hours: "180",
-    modules: ["Basic Circuits", "Advanced Wiring", "Safety Procedures", "Practical Sessions"],
+    hours: "160",
+    modules: [
+      "Electrical Theory",
+      "Wiring & Circuits",
+      "Troubleshooting",
+      "Practical Lab",
+    ],
   },
   {
     id: 6,
@@ -73,9 +104,15 @@ export const courses = [
     desc: "Front desk, hotel management, and customer service skills.",
     img: hospitalityImg,
     level: "Beginner",
+    category: "Hospitality",
     duration: "3 Months",
-    hours: "110",
-    modules: ["Customer Service", "Hotel Management", "Tourism Basics", "Practical Training"],
+    hours: "120",
+    modules: [
+      "Hospitality Basics",
+      "Customer Service",
+      "Hotel Operations",
+      "Practical Training",
+    ],
   },
   {
     id: 7,
@@ -83,9 +120,15 @@ export const courses = [
     desc: "Bricklaying, concrete work, and construction basics.",
     img: masonryImg,
     level: "Intermediate",
+    category: "Trades & Crafts",
     duration: "4 Months",
     hours: "140",
-    modules: ["Materials", "Basic Brickwork", "Concrete Work", "Site Projects"],
+    modules: [
+      "Tools & Materials",
+      "Bricklaying Techniques",
+      "Concrete Work",
+      "Site Practice",
+    ],
   },
   {
     id: 8,
@@ -93,9 +136,15 @@ export const courses = [
     desc: "Residential and commercial plumbing techniques.",
     img: plumbingImg,
     level: "Beginner",
+    category: "Trades & Crafts",
     duration: "3 Months",
     hours: "120",
-    modules: ["Tools & Materials", "Pipe Installation", "Maintenance", "Practical Projects"],
+    modules: [
+      "Tools & Materials",
+      "Pipe Installation",
+      "Leak Troubleshooting",
+      "Hands-on Workshop",
+    ],
   },
   {
     id: 9,
@@ -103,9 +152,15 @@ export const courses = [
     desc: "Stitching, design, and garment making skills.",
     img: tailoringImg,
     level: "Intermediate",
+    category: "Trades & Crafts",
     duration: "4 Months",
     hours: "130",
-    modules: ["Stitching Basics", "Pattern Making", "Garment Construction", "Design Projects"],
+    modules: [
+      "Fabric & Tools",
+      "Basic Stitching",
+      "Fashion Design",
+      "Project Workshop",
+    ],
   },
   {
     id: 10,
@@ -113,21 +168,40 @@ export const courses = [
     desc: "Metalwork, welding techniques, and safety procedures.",
     img: weldingImg,
     level: "Advanced",
+    category: "Trades & Crafts",
     duration: "6 Months",
-    hours: "180",
-    modules: ["Welding Basics", "Metal Fabrication", "Safety Measures", "Workshop Projects"],
-  }
+    hours: "150",
+    modules: [
+      "Welding Basics",
+      "Metal Fabrication",
+      "Safety & Techniques",
+      "Practical Welding",
+    ],
+  },
 ];
 
 export default function Catalog() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const filteredCourses = courses.filter(
-    (course) =>
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedLevel, setSelectedLevel] = useState("");
+  const [appliedCategory, setAppliedCategory] = useState("");
+  const [appliedLevel, setAppliedLevel] = useState("");
+
+  const filteredCourses = courses.filter((course) => {
+    const matchesSearch =
       course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      course.level.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+      course.level.toLowerCase().includes(searchTerm.toLowerCase());
+
+    const matchesCategory = appliedCategory
+      ? course.category === appliedCategory
+      : true;
+
+    const matchesLevel = appliedLevel ? course.level === appliedLevel : true;
+
+    return matchesSearch && matchesCategory && matchesLevel;
+  });
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
@@ -208,6 +282,15 @@ export default function Catalog() {
       <FiltersPopup
         isOpen={isFilterOpen}
         onClose={() => setIsFilterOpen(false)}
+        tempCategory={selectedCategory}
+        setTempCategory={setSelectedCategory}
+        tempLevel={selectedLevel}
+        setTempLevel={setSelectedLevel}
+        onApply={() => {
+          setAppliedCategory(selectedCategory);
+          setAppliedLevel(selectedLevel);
+          setIsFilterOpen(false);
+        }}
       />
     </div>
   );
