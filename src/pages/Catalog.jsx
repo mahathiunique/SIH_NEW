@@ -1,15 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Book, Clock, UserPlus, Sliders } from "lucide-react";
-<<<<<<< HEAD
-import FiltersPopup from "../components/FiltersPopup"; // Import the popup
-
-// Import local images
-=======
-import { useNavigate } from "react-router-dom";
 import FiltersPopup from "../components/FiltersPopup";
 
 // Import images
->>>>>>> cf34b49 (Initial commit after cleanup)
 import agricultureImg from "../assets/agriculture.jpg";
 import automobileImg from "../assets/automobile.jpg";
 import carpentryImg from "../assets/carpentry.jpg";
@@ -21,43 +15,113 @@ import plumbingImg from "../assets/plumbing.jpg";
 import tailoringImg from "../assets/tailoring.jpg";
 import weldingImg from "../assets/welding.jpg";
 
-<<<<<<< HEAD
-// NCVET-style course data
-const courses = [
-  { id: 1, title: "Sustainable Agriculture", desc: "Learn modern farming and sustainable practices.", img: agricultureImg, level: "Beginner", duration: "3 Months" },
-  { id: 2, title: "Automobile Servicing", desc: "Vehicle maintenance, diagnostics, and repair techniques.", img: automobileImg, level: "Intermediate", duration: "4 Months" },
-  { id: 3, title: "Carpentry & Woodwork", desc: "Master furniture making and woodcraft skills.", img: carpentryImg, level: "Beginner", duration: "3 Months" },
-  { id: 4, title: "Computer & IT Skills", desc: "Basic to advanced computer and networking courses.", img: computerImg, level: "Intermediate", duration: "4 Months" },
-  { id: 5, title: "Electrical Work", desc: "Learn electrical wiring, circuits, and safety.", img: electricalImg, level: "Advanced", duration: "6 Months" },
-  { id: 6, title: "Hospitality & Tourism", desc: "Front desk, hotel management, and customer service skills.", img: hospitalityImg, level: "Beginner", duration: "3 Months" },
-  { id: 7, title: "Masonry", desc: "Bricklaying, concrete work, and construction basics.", img: masonryImg, level: "Intermediate", duration: "4 Months" },
-  { id: 8, title: "Plumbing & Pipefitting", desc: "Residential and commercial plumbing techniques.", img: plumbingImg, level: "Beginner", duration: "3 Months" },
-  { id: 9, title: "Tailoring & Fashion Design", desc: "Stitching, design, and garment making skills.", img: tailoringImg, level: "Intermediate", duration: "4 Months" },
-  { id: 10, title: "Welding & Fabrication", desc: "Metalwork, welding techniques, and safety procedures.", img: weldingImg, level: "Advanced", duration: "6 Months" },
-=======
-// Course data
+// Complete NCVET-style courses array
 export const courses = [
-  { id: 1, title: "Sustainable Agriculture", desc: "Learn modern farming and sustainable practices.", img: agricultureImg, level: "Beginner", duration: "3 Months", modules: ["Introduction", "Crop Management"], hours: "120 Hours" },
-  { id: 2, title: "Automobile Servicing", desc: "Vehicle maintenance, diagnostics, and repair techniques.", img: automobileImg, level: "Intermediate", duration: "4 Months", modules: ["Module 1: Basics", "Module 2: Electrical Systems", "Module 3: AC Systems"], hours: "160 Hours" },
-  { id: 3, title: "Carpentry & Woodwork", desc: "Master furniture making and woodcraft skills.", img: carpentryImg, level: "Beginner", duration: "3 Months", modules: ["Wood Selection", "Basic Tools", "Furniture Making"], hours: "120 Hours" },
-  { id: 4, title: "Computer & IT Skills", desc: "Basic to advanced computer and networking courses.", img: computerImg, level: "Intermediate", duration: "4 Months", modules: ["Computer Basics", "Networking", "Office Tools"], hours: "140 Hours" },
-  { id: 5, title: "Electrical Work", desc: "Learn electrical wiring, circuits, and safety.", img: electricalImg, level: "Advanced", duration: "6 Months", modules: ["Circuit Theory", "Wiring", "Safety Practices"], hours: "180 Hours" },
-  { id: 6, title: "Hospitality & Tourism", desc: "Front desk, hotel management, and customer service skills.", img: hospitalityImg, level: "Beginner", duration: "3 Months", modules: ["Customer Service", "Hotel Management", "Tour Operations"], hours: "120 Hours" },
-  { id: 7, title: "Masonry", desc: "Bricklaying, concrete work, and construction basics.", img: masonryImg, level: "Intermediate", duration: "4 Months", modules: ["Bricklaying", "Concrete Work", "Site Management"], hours: "140 Hours" },
-  { id: 8, title: "Plumbing & Pipefitting", desc: "Residential and commercial plumbing techniques.", img: plumbingImg, level: "Beginner", duration: "3 Months", modules: ["Pipe Basics", "Fittings", "Water Systems"], hours: "120 Hours" },
-  { id: 9, title: "Tailoring & Fashion Design", desc: "Stitching, design, and garment making skills.", img: tailoringImg, level: "Intermediate", duration: "4 Months", modules: ["Basic Stitching", "Pattern Making", "Design Techniques"], hours: "140 Hours" },
-  { id: 10, title: "Welding & Fabrication", desc: "Metalwork, welding techniques, and safety procedures.", img: weldingImg, level: "Advanced", duration: "6 Months", modules: ["Welding Basics", "Metal Fabrication", "Safety"], hours: "180 Hours" },
->>>>>>> cf34b49 (Initial commit after cleanup)
+  {
+    id: 1,
+    title: "Sustainable Agriculture",
+    desc: "Learn modern farming and sustainable practices.",
+    img: agricultureImg,
+    level: "Beginner",
+    duration: "3 Months",
+    hours: "120",
+    modules: ["Intro to Agriculture", "Soil Management", "Crop Planning", "Sustainable Practices"],
+  },
+  {
+    id: 2,
+    title: "Automobile Servicing",
+    desc: "Vehicle maintenance, diagnostics, and repair techniques.",
+    img: automobileImg,
+    level: "Intermediate",
+    duration: "4 Months",
+    hours: "150",
+    modules: ["Automotive Systems", "Electrical Diagnostics", "AC Systems", "Practical Workshops"],
+  },
+  {
+    id: 3,
+    title: "Carpentry & Woodwork",
+    desc: "Master furniture making and woodcraft skills.",
+    img: carpentryImg,
+    level: "Beginner",
+    duration: "3 Months",
+    hours: "100",
+    modules: ["Tools & Materials", "Basic Joinery", "Furniture Making", "Project Workshop"],
+  },
+  {
+    id: 4,
+    title: "Computer & IT Skills",
+    desc: "Basic to advanced computer and networking courses.",
+    img: computerImg,
+    level: "Intermediate",
+    duration: "4 Months",
+    hours: "130",
+    modules: ["Computer Basics", "Networking Fundamentals", "Software Tools", "Projects"],
+  },
+  {
+    id: 5,
+    title: "Electrical Work",
+    desc: "Learn electrical wiring, circuits, and safety.",
+    img: electricalImg,
+    level: "Advanced",
+    duration: "6 Months",
+    hours: "180",
+    modules: ["Basic Circuits", "Advanced Wiring", "Safety Procedures", "Practical Sessions"],
+  },
+  {
+    id: 6,
+    title: "Hospitality & Tourism",
+    desc: "Front desk, hotel management, and customer service skills.",
+    img: hospitalityImg,
+    level: "Beginner",
+    duration: "3 Months",
+    hours: "110",
+    modules: ["Customer Service", "Hotel Management", "Tourism Basics", "Practical Training"],
+  },
+  {
+    id: 7,
+    title: "Masonry",
+    desc: "Bricklaying, concrete work, and construction basics.",
+    img: masonryImg,
+    level: "Intermediate",
+    duration: "4 Months",
+    hours: "140",
+    modules: ["Materials", "Basic Brickwork", "Concrete Work", "Site Projects"],
+  },
+  {
+    id: 8,
+    title: "Plumbing & Pipefitting",
+    desc: "Residential and commercial plumbing techniques.",
+    img: plumbingImg,
+    level: "Beginner",
+    duration: "3 Months",
+    hours: "120",
+    modules: ["Tools & Materials", "Pipe Installation", "Maintenance", "Practical Projects"],
+  },
+  {
+    id: 9,
+    title: "Tailoring & Fashion Design",
+    desc: "Stitching, design, and garment making skills.",
+    img: tailoringImg,
+    level: "Intermediate",
+    duration: "4 Months",
+    hours: "130",
+    modules: ["Stitching Basics", "Pattern Making", "Garment Construction", "Design Projects"],
+  },
+  {
+    id: 10,
+    title: "Welding & Fabrication",
+    desc: "Metalwork, welding techniques, and safety procedures.",
+    img: weldingImg,
+    level: "Advanced",
+    duration: "6 Months",
+    hours: "180",
+    modules: ["Welding Basics", "Metal Fabrication", "Safety Measures", "Workshop Projects"],
+  }
 ];
 
 export default function Catalog() {
   const [searchTerm, setSearchTerm] = useState("");
-<<<<<<< HEAD
-  const [isFilterOpen, setIsFilterOpen] = useState(false); // state to toggle filters
-=======
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const navigate = useNavigate();
->>>>>>> cf34b49 (Initial commit after cleanup)
 
   const filteredCourses = courses.filter(
     (course) =>
@@ -77,20 +141,15 @@ export default function Catalog() {
             Browse skill-based vocational training programs and start your journey today.
           </p>
         </div>
-        {/* Filters button */}
         <button
           className="flex items-center mt-4 md:mt-0 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors"
-<<<<<<< HEAD
-          onClick={() => setIsFilterOpen(true)} // open the popup
-=======
           onClick={() => setIsFilterOpen(true)}
->>>>>>> cf34b49 (Initial commit after cleanup)
         >
           <Sliders size={18} className="mr-2" /> Filters
         </button>
       </div>
 
-      {/* Search bar */}
+      {/* Search */}
       <div className="flex justify-center mb-10">
         <input
           type="text"
@@ -101,8 +160,8 @@ export default function Catalog() {
         />
       </div>
 
-      {/* Courses grid */}
-      <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
+      {/* Courses Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {filteredCourses.length > 0 ? (
           filteredCourses.map((course) => (
             <div
@@ -128,17 +187,12 @@ export default function Catalog() {
                   </span>
                 </div>
                 <div className="text-center">
-<<<<<<< HEAD
-                  <button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center gap-2">
-                    <UserPlus size={16} /> Enroll Now
-=======
-                  <button
+                  <Link
+                    to={`/courses/${course.id}`}
                     className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors inline-flex items-center gap-2"
-                    onClick={() => navigate(`/course/${course.id}`)}
                   >
-                    <UserPlus size={16} /> View Course
->>>>>>> cf34b49 (Initial commit after cleanup)
-                  </button>
+                    <UserPlus size={16} /> Enroll Now
+                  </Link>
                 </div>
               </div>
             </div>

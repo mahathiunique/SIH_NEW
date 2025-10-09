@@ -1,50 +1,71 @@
-// src/pages/CourseDetail.jsx
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { courses } from "./Catalog"; // import course data
+import { courses } from "./Catalog";
 
 export default function CourseDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Find course based on ID
   const course = courses.find((c) => c.id === parseInt(id));
-
-  if (!course) return <p className="text-white p-6">Course not found.</p>;
+  if (!course) return <p className="text-black p-6">Course not found.</p>;
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white p-6">
+    <div className="min-h-screen bg-gray-100 p-6">
+      {/* Back Button */}
       <button
         onClick={() => navigate(-1)}
-        className="mb-6 px-4 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg"
+        className="mb-6 px-4 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors"
       >
-        Back
+        &larr; Back to Catalog
       </button>
 
-      <div className="max-w-4xl mx-auto bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-        <img src={course.img} alt={course.title} className="w-full h-64 object-cover" />
-        <div className="p-6">
-          <h2 className="text-3xl font-bold mb-2">{course.title}</h2>
-          <p className="text-gray-300 mb-4">{course.desc}</p>
-          <div className="flex gap-6 mb-4">
-            <p><strong>Level:</strong> {course.level}</p>
-            <p><strong>Duration:</strong> {course.duration}</p>
-            <p><strong>Course Hours:</strong> {course.hours}</p>
+      {/* Banner */}
+      <div
+        className="relative w-full h-64 rounded-xl overflow-hidden shadow-lg mb-6"
+        style={{ backgroundImage: `url(${course.img})`, backgroundSize: "cover", backgroundPosition: "center" }}
+      >
+        <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
+          <h1 className="text-3xl md:text-5xl font-bold text-white text-center px-4">{course.title}</h1>
+        </div>
+      </div>
+
+      {/* Course Info */}
+      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-lg p-6 mb-6">
+        <p className="text-gray-700 mb-4">{course.desc}</p>
+        <div className="flex flex-wrap gap-6 text-gray-800 mb-4">
+          <div className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full font-medium">
+            Level: {course.level}
           </div>
-
-          <h3 className="text-2xl font-semibold mb-2">Modules:</h3>
-          <ul className="list-disc list-inside">
-            {course.modules.map((mod, index) => (
-              <li key={index}>{mod}</li>
-            ))}
-          </ul>
-
-          <div className="mt-6">
-            <button className="bg-green-600 px-6 py-3 rounded-lg hover:bg-green-700 transition-colors">
-              Start Course
-            </button>
+          <div className="bg-green-100 text-green-800 px-3 py-1 rounded-full font-medium">
+            Duration: {course.duration}
+          </div>
+          <div className="bg-purple-100 text-purple-800 px-3 py-1 rounded-full font-medium">
+            Hours: {course.hours}
           </div>
         </div>
+      </div>
+
+      {/* Modules */}
+      <div className="max-w-5xl mx-auto mb-6">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">Course Modules</h2>
+        <div className="space-y-4">
+          {course.modules.map((mod, idx) => (
+            <div
+              key={idx}
+              className="bg-white rounded-xl shadow p-4 flex items-center justify-between hover:bg-gray-50 transition"
+            >
+              <span className="font-medium text-gray-800">{mod}</span>
+              <span className="text-sm text-gray-500">Module {idx + 1}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Start Course Button */}
+      <div className="max-w-5xl mx-auto text-center">
+        <button className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors">
+          Start Course
+        </button>
       </div>
     </div>
   );
