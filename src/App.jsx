@@ -5,7 +5,6 @@ import { Routes, Route } from "react-router-dom";
 // Components
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
-import AccessibilityPanel from "./components/AccessibilityPanel";
 import VoiceAssistant from "./components/VoiceAssistant";
 import ChatbotPopup from "./components/ChatbotPopup";
 
@@ -36,20 +35,14 @@ export default function App() {
             <div className="flex-1 overflow-y-auto p-6 bg-gradient-to-b from-blue-800 via-blue-900 to-black text-white min-h-screen">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                {/* MyCourses routes */}
                 <Route path="/mycourses" element={<MyCoursesOverview />} />
                 <Route path="/mycourse/:id" element={<MyCoursesDetail />} />
-
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/courses/:id" element={<CourseDetail />} />
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
               </Routes>
-            </div>
-
-            <div className="hidden xl:block w-72 flex-shrink-0 overflow-y-auto p-6 bg-gray-900">
-              <AccessibilityPanel />
             </div>
           </div>
 
