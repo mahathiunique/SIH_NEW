@@ -3,9 +3,7 @@ import React from "react";
 import courses from "../../data/courses";
 import { Link } from "react-router-dom";
 
-
 const MyCoursesPopup = ({ onClose }) => {
-  // enrolled = those with progress > 0
   const myCourses = courses.filter((c) => typeof c.progress === "number" && c.progress > 0);
 
   return (
@@ -27,22 +25,19 @@ const MyCoursesPopup = ({ onClose }) => {
                 <div className="flex-1">
                   <div className="font-semibold text-lg">{c.title}</div>
                   <div className="text-sm text-gray-600">{c.duration}</div>
-
                   <div className="w-full bg-gray-200 h-3 rounded mt-2 overflow-hidden">
                     <div className="bg-blue-600 h-3" style={{ width: `${c.progress}%` }} />
                   </div>
                   <div className="text-sm text-gray-600 mt-1">Progress: {c.progress}%</div>
                 </div>
-
                 <div className="flex flex-col gap-2">
                   <Link
-                    to={`/course/${c.id}`}
+                    to={`/mycourse/${c.id}`}
                     onClick={onClose}
                     className="text-sm bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
                   >
                     Resume
                   </Link>
-
                   <button onClick={() => alert("Download not implemented")} className="text-sm bg-gray-200 px-3 py-1 rounded">
                     Download
                   </button>

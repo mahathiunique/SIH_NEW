@@ -1,3 +1,4 @@
+// src/App.jsx
 import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -10,7 +11,8 @@ import ChatbotPopup from "./components/ChatbotPopup";
 
 // Pages
 import Dashboard from "./pages/Dashboard";
-import MyCourses from "./pages/MyCourses";
+import MyCoursesOverview from "./pages/MyCoursesOverview";
+import MyCoursesDetail from "./pages/MyCoursesDetail";
 import Catalog from "./pages/Catalog";
 import CourseDetail from "./pages/CourseDetail";
 import Profile from "./pages/Profile";
@@ -34,7 +36,10 @@ export default function App() {
             <div className="flex-1 overflow-y-auto p-6 bg-gradient-to-b from-blue-800 via-blue-900 to-black text-white min-h-screen">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
-                <Route path="/mycourses" element={<MyCourses />} />
+                {/* MyCourses routes */}
+                <Route path="/mycourses" element={<MyCoursesOverview />} />
+                <Route path="/mycourse/:id" element={<MyCoursesDetail />} />
+
                 <Route path="/catalog" element={<Catalog />} />
                 <Route path="/courses/:id" element={<CourseDetail />} />
                 <Route path="/profile" element={<Profile />} />
