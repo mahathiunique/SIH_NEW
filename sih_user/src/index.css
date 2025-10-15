@@ -1,0 +1,230 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎨 Government-like (muted, accessible) Theme */
+:root {
+  --primary: #0b3d91;        /* Deep navy */
+  --primary-strong: #04285a; /* Darker navy for headers */
+  --accent: #f6b042;         /* Saffron accent for small highlights */
+  --muted: #6b7280;          /* Muted text */
+  --background: #ffffff;     /* Clean white */
+  --page-bg: #f7f7f8;        /* very light gray page background */
+  --card-bg: #ffffff;
+  --card-border: #e6e7e9;    /* subtle card border */
+  --card-hover: #f3f4f6;
+  --text-dark: #0f1724;      /* near-black for high contrast */
+  --text-light: #6b7280;
+  --success: #15803d;
+  --warning: #f59e0b;
+  --danger: #b91c1c;
+  --rounded: 0.5rem;
+}
+
+/* 🌙 Dark mode (kept simple) */
+.dark {
+  --background: #0b1220;
+  --page-bg: #071025;
+  --card-bg: #071025;
+  --card-border: #132033;
+  --card-hover: #0f1a2b;
+  --text-dark: #e6eef9;
+  --text-light: #9aa6b3;
+}
+
+/* 🌍 Global */
+body {
+  background-color: var(--page-bg);
+  color: var(--text-dark);
+  font-family: "Inter", "Nunito", sans-serif;
+  transition: background 0.15s ease, color 0.15s ease;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sidebar (muted, solid) */
+.sidebar {
+  background: transparent;
+  color: var(--text-dark);
+  padding: 1rem;
+}
+.sidebar a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  transition: background 0.12s ease, transform 0.12s ease;
+  color: var(--text-dark);
+  text-decoration: none;
+}
+.sidebar a:hover {
+  background: rgba(11, 61, 145, 0.06);
+  transform: translateX(4px);
+}
+
+/* Header - simple, white bar with subtle border like government portals */
+.header {
+  background: var(--card-bg);
+  color: var(--text-dark);
+  padding: 0.75rem 1rem;
+  border-radius: 0.375rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--card-border);
+}
+
+/* Course Cards - image focused, subtle lift */
+.course-card {
+  background: var(--card-bg);
+  border-radius: var(--rounded);
+  padding: 0.85rem;
+  box-shadow: 0 1px 4px rgba(16,24,40,0.06);
+  border: 1px solid var(--card-border);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+  position: relative;
+  z-index: 1;
+  cursor: pointer;
+}
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 24px rgba(11, 22, 37, 0.08);
+  border-color: rgba(11,61,145,0.08);
+}
+
+/* 🌈 Gradient Animation */
+@keyframes neon-border {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Progress Bars - simple and accessible */
+.progress-bar {
+  height: 8px;
+  border-radius: 999px;
+  background: #eef2f6;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+.progress-bar span {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-strong));
+}
+
+/* Buttons - solid, subtle */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 0.55rem 1rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  border: 1px solid rgba(11,61,145,0.08);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(11,22,37,0.08);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--text-dark);
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+}
+.btn-secondary:hover {
+  background: #fbfbfc;
+}
+
+/* 📱 Responsive Mobile Cards */
+@media (max-width: 768px) {
+  .course-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .course-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* Sidebar tweaks already defined above (kept simple and non-distracting) */
+
+/* Image label pill used on course thumbnails (dark translucent pill) */
+.img-label {
+  display: inline-block;
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Pagination controls like circles */
+.pager-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--card-border);
+  background: var(--card-bg);
+  color: var(--text-dark);
+}
+
+/* View all link style */
+.view-all {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ----------------------------- */
+/* Tailwind blue -> Government navy overrides
+   These help switch the app from the original blue theme to the
+   government-like navy/saffron palette without touching every JSX file.
+   They intentionally use !important to override generated utilities.
+*/
+
+.bg-blue-600 { background-color: var(--primary) !important; }
+.bg-blue-700 { background-color: var(--primary-strong) !important; }
+.bg-blue-500 { background-color: rgba(11,61,145,0.9) !important; }
+.hover\:bg-blue-700:hover { background-color: var(--primary-strong) !important; }
+.text-blue-600 { color: var(--primary) !important; }
+.text-blue-700 { color: var(--primary-strong) !important; }
+.text-blue-800 { color: var(--primary-strong) !important; }
+.bg-blue-200 { background-color: rgba(11,61,145,0.06) !important; }
+.border-blue-600 { border-color: var(--primary) !important; }
+.ring-blue-400 { box-shadow: 0 0 0 3px rgba(11,61,145,0.12) !important; }
+.focus\:ring-blue-400:focus { box-shadow: 0 0 0 4px rgba(11,61,145,0.12) !important; }
+
+/* Gradient variable mappings - Tailwind uses CSS vars for gradients */
+.from-blue-800 { --tw-gradient-from: var(--primary); --tw-gradient-to: var(--primary); }
+.via-blue-900 { --tw-gradient-stops: var(--primary), var(--primary-strong); }
+.to-blue-600 { --tw-gradient-to: var(--primary) !important; }
+.to-black { --tw-gradient-to: #000000; }
+
+/* utility: small blue badges -> saffron accent on light bg */
+.inline-flex.items-center.gap-1.bg-blue-200.text-blue-800,
+.badge-blue {
+  background: rgba(246,176,66,0.12) !important; /* saffron tint */
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* Buttons and floating actions that used blue */
+.fixed.bottom-6.right-6.bg-blue-600,
+.floating-blue {
+  background: var(--primary) !important;
+  color: white !important;
+}
+
