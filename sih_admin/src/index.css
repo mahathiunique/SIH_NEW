@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Color variables for light theme */
+:root {
+  --background: #f8fafc;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --text-tertiary: #6b7280;
+  --border-color: #e5e7eb;
+  --card-background: #ffffff;
+  --card-background-hover: #f9fafb;
+  --input-background: #f3f4f6;
+  --accent-color: #0ea5e9;
+  --accent-color-hover: #0284c7;
+  --button-text-light: #ffffff;
+  --status-completed-bg: #dcfce7;
+  --status-completed-text: #065f46;
+  --status-in-progress-bg: #fef9c3;
+  --status-in-progress-text: #a16207;
+  --status-review-bg: #dbeafe;
+  --status-review-text: #1e40af;
+  --status-failed-bg: #fee2e2;
+  --status-failed-text: #991b1b;
+  --header-bg: #ffffff;
+  --sidebar-bg: #f9fafb;
+}
+
+/* Dark theme overrides */
+.dark {
+  --background: #0f172a;
+  --text-primary: #f9fafb;
+  --text-secondary: #d1d5db;
+  --text-tertiary: #9ca3af;
+  --border-color: #374151;
+  --card-background: #1e293b;
+  --card-background-hover: #334155;
+  --input-background: #374151;
+  --accent-color: #38bdf8;
+  --accent-color-hover: #0ea5e9;
+  --button-text-light: #e5e7eb;
+  --status-completed-bg: #064e3b;
+  --status-completed-text: #a7f3d0;
+  --status-in-progress-bg: #525218;
+  --status-in-progress-text: #fde047;
+  --status-review-bg: #1e3a8a;
+  --status-review-text: #93c5fd;
+  --status-failed-bg: #7f1d1d;
+  --status-failed-text: #fca5a5;
+  --header-bg: #1e293b;
+  --sidebar-bg: #1e293b;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
+}
